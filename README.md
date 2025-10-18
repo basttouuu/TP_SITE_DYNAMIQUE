@@ -49,6 +49,7 @@ git clone https://github.com/basttouuu/TP_SITE_DYNAMIQUE.git
 cd <votre-repo>
 
 # Lancer le serveur
+cd .\src\
 go run main.go
 ```
 
