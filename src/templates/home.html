@@ -13,7 +13,7 @@
     <img class="logo" src="/static/img/logo/1.png" alt="StreetShop Logo">
     <nav>
       <a href="/home">Accueil</a>
-      <a href="/panier">Panier</a>
+      <a href="/add">Add</a>
     </nav>
   </header>
 
@@ -31,22 +31,22 @@
           <h2 class="produit-nom">{{.Nom}}</h2>
           {{if .Lareduc}}
             <p class="prix">
-              <span class="old-price">{{printf "%.2f" .Prix}} €</span>
+              <span class="old-price">{{printf "%.2f" .Prix}}€</span>
               <span class="new-price">{{.PrixReduit}} €</span>
               <span class="reduc">-{{.PourcentageReduc}}%</span>
             </p>
           {{else}}
-            <p class="prix">{{printf "%.2f" .Prix}} €</p>
+            <p class="prix">{{printf "%.2f" .Prix}}€</p>
           {{end}}
           <a class="btn-consulter" href="/produit?id={{.Id}}">Consulter</a>
         </div>
       </div>
       {{else}}
-      <p>Aucun produit disponible.</p>
+        <p>Aucun produit disponible.</p>
       {{end}}
     </section>
   </main>
-
+ 
 </body>
 </html>
 {{end}}
