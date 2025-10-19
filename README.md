@@ -25,14 +25,12 @@ L’objectif est de construire un mini site e‑commerce dynamique en trois éta
 - Vérification des données saisies (prix positif, stock ≥ 0, réduction entre 0 et 100).
 - Ajout du produit à la **liste globale en mémoire**.
 - Redirection automatique vers la page détail du produit ajouté.
-- Image par défaut si aucune n’est fournie.
 
 ---
 
 ## 🛠️ Technologies utilisées
 - **Go (net/http, html/template)** – gestion des routes et rendu dynamique
 - **HTML5 / CSS3** – mise en forme et structure
-- **Vanilla JS (optionnel)** – interactions simples si besoin
 
 ---
 
