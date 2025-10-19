@@ -92,8 +92,19 @@ var (
 			PrixReduit:       199.00 * (1 - 0.25),
 			PourcentageReduc: 25,
 		},
+		{
+			Id:               7,
+			Nom:              "PALACE PULL A CAPUCHE UNISEXE LONDON NOIR",
+			Description:      "Pull Noir stylé",
+			Reduction:        0,
+			Image:            "/static/img/products/18A.webp",
+			Prix:             259.00,
+			Lareduc:          false,
+			PrixReduit:       259.00,
+			PourcentageReduc: 0,
+		},
 	}
-	nextID = 7
+	nextID = 8
 )
 
 func main() {
@@ -107,14 +118,14 @@ func main() {
 	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
 		err := temp.ExecuteTemplate(w, "home", produits)
 		if err != nil {
-			http.Error(w, "Erreur template home", http.StatusInternalServerError)
+			temp.ExecuteTemplate(w, "erreurtemplates", nil)
 		}
 	})
 
 	http.HandleFunc("/erreur", func(w http.ResponseWriter, r *http.Request) {
 		err := temp.ExecuteTemplate(w, "erreur", produits)
 		if err != nil {
-			http.Error(w, "Erreur template home", http.StatusInternalServerError)
+			temp.ExecuteTemplate(w, "erreurtemplates", nil)
 		}
 	})
 
@@ -122,7 +133,7 @@ func main() {
 		idProduit := r.FormValue("id")
 		produitId, err := strconv.Atoi(idProduit)
 		if err != nil {
-			temp.ExecuteTemplate(w, "erreur", nil)
+			temp.ExecuteTemplate(w, "notfound", nil)
 			return
 		}
 
@@ -133,7 +144,7 @@ func main() {
 			}
 		}
 
-		http.Error(w, "Produit non trouvé", http.StatusNotFound)
+		temp.ExecuteTemplate(w, "notfound", nil)
 	})
 
 	http.HandleFunc("/add", func(w http.ResponseWriter, r *http.Request) {
@@ -198,7 +209,7 @@ func main() {
 
 		err := temp.ExecuteTemplate(w, "add", nil)
 		if err != nil {
-			temp.ExecuteTemplate(w, "erreur", nil)
+			temp.ExecuteTemplate(w, "notfound", nil)
 		}
 	})
 
@@ -216,9 +227,9 @@ func main() {
 	}
 }
 
-func importationimagequirendfou(file multipart.File, filename string) {
+func importationimagequirendfou(fichier multipart.File, fichiernom string) {
 
-	imageSouhaiter, err := os.Create("../assets/img/products/" + filename)
+	imageSouhaiter, err := os.Create("../assets/img/products/" + fichiernom)
 	if err != nil {
 		fmt.Println("Erreur création destination:", err)
 		return
@@ -227,9 +238,11 @@ func importationimagequirendfou(file multipart.File, filename string) {
 	}
 	defer imageSouhaiter.Close()
 
-	_, err = io.Copy(imageSouhaiter, file)
+	_, err = io.Copy(imageSouhaiter, fichier)
 	if err != nil {
 		fmt.Println("Erreur copie:", err)
 		return
+	} else {
+		fmt.Println("Copie d'image Réussis !")
 	}
 }
