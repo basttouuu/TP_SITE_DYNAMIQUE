@@ -17,13 +17,13 @@ header.nav-link {
   display: flex;
   justify-content: center;         
   align-items: center;
-  padding: 20px 40px;
+  padding: 40px 40px;
   background: #111;
 }
 
 header.nav-link .logo {
-  height: 50px;
-  width: 100px;
+  height: 100px;
+  width: 150px;
 }
 
 header.nav-link nav {
@@ -47,7 +47,7 @@ header.nav-link nav a:hover {
 .titre {
   position: relative;
   display: flex;
-  left: 25px;
+  left: 15px;
   right: auto;
   font-size: 32px;
   margin: 40px 0 20px;
